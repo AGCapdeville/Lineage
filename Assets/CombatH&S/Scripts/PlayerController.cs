@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private InputAction movement;
     private InputAction run;
     private InputAction attack;
+    private InputAction aim;
     // private Animator animator;
 
     private float movementSpeed = 4f;
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
         attack = cubeInputActions.Player.Attack;
         attack.Enable();
+
+        aim = cubeInputActions.Player.Aim;
+        aim.Enable();
 //        cubeInputActions.Player.Run.performed += DoRun;
 //        cubeInputActions.Player.Run.Enable();
     }
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
         movement.Disable();
         run.Disable();
         attack.Disable();
+        aim.Disable();
 //        cubeInputActions.Player.Run.Disable();
     }
 
@@ -67,7 +72,7 @@ public class PlayerController : MonoBehaviour
             animators[1].Play("swingHammerAnimation");
         }
 
-        movePlayer();
+        movePlayerTo();
     }
 
     // Old player position x & z transform movement:
@@ -128,6 +133,7 @@ public class PlayerController : MonoBehaviour
         movementVector.x = inputVector.x;
         movementVector.z = inputVector.y;
 
+        bool aiming = Mathf.Approximately(aim.ReadValue<float>(), 1);
         bool running = Mathf.Approximately(run.ReadValue<float>(), 1);
 
         Vector3 camF = Camera.main.transform.forward;
@@ -141,18 +147,18 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newPlayerMovementVector = camF * movementVector.z + camR * movementVector.x;
 
-
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.right * 10, Color.yellow);
 
 
-        if (movementVector != Vector3.zero && !running)
+        if (movementVector != Vector3.zero && !running) // Walking
         {
+
             controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed);
             Quaternion toRotation = Quaternion.LookRotation(newPlayerMovementVector, Vector3.up);
             controller.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
         }
-        else if (movementVector != Vector3.zero && running)
+        else if (movementVector != Vector3.zero && running) // Running
         {
             if (StaminaBar.instance.IsStaminaEmpty())
             {
@@ -170,12 +176,73 @@ public class PlayerController : MonoBehaviour
                 animators[0].SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
             }
         }
-        else
+        else // Idle
         {
-            Quaternion toRotation = Quaternion.LookRotation(cameraVector, Vector3.up);
-            controller.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            if (aiming)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(cameraVector, Vector3.up);
+                controller.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
+
             animators[0].SetFloat("Speed", 0f, 0.1f, Time.deltaTime);
         }
 
+    }
+
+    private void movePlayerTo()
+    {
+
+        var cameraForwardDirection = Camera.main.transform.forward;
+        var cameraVector = Vector3.Scale(cameraForwardDirection, (Vector3.right + Vector3.forward));
+
+        bool canRun = StaminaBar.instance.IsStaminaEmpty();
+        bool aiming = Mathf.Approximately(aim.ReadValue<float>(), 1);
+
+        // Player Input
+        bool running = Mathf.Approximately(run.ReadValue<float>(), 1);
+        Vector2 inputVector = movement.ReadValue<Vector2>();
+        
+        Vector3 movementVector = new Vector3();
+        movementVector.x = inputVector.x;
+        movementVector.z = inputVector.y;
+        bool moving = movementVector != Vector3.zero;
+
+        Vector3 camF = Camera.main.transform.forward;
+        Vector3 camR = Camera.main.transform.right;
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;
+
+        Vector3 newPlayerMovementVector = camF * movementVector.z + camR * movementVector.x;
+
+        playerRotation(aiming, cameraVector, newPlayerMovementVector);
+
+        if (moving && !running) // Walking
+        {
+            controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed);
+            animators[0].SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+        }
+        else if (moving && running && canRun) // Running
+        {
+            StaminaBar.instance.UseStamina(0.05f);
+            controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed * movementSpeedModifier);
+            animators[0].SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
+        }
+        else if (moving && running && !canRun) // Attempting to run
+        {
+            controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed * movementSpeedModifier);
+            animators[0].SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+        }
+        else // Idle
+        {
+            animators[0].SetFloat("Speed", 0f, 0.1f, Time.deltaTime);
+        }
+    }
+
+    private void playerRotation(bool aiming, Vector3 cameraVector, Vector3 movementVector)
+    {
+        Quaternion toRotation = aiming ? Quaternion.LookRotation(cameraVector, Vector3.up) : Quaternion.LookRotation(movementVector, Vector3.up); 
+        controller.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 }
