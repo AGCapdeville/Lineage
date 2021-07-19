@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private float movementSpeedModifier = 2f;
     private float rotationSpeed = 215f;
 
-
     private Animator[] animators;
 
     private void Start()
@@ -216,26 +215,29 @@ public class PlayerController : MonoBehaviour
 
         Vector3 newPlayerMovementVector = camF * movementVector.z + camR * movementVector.x;
 
-        playerRotation(aiming, cameraVector, newPlayerMovementVector);
-
         if (moving && !running) // Walking
         {
+            playerRotation(aiming, cameraVector, newPlayerMovementVector);
             controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed);
             animators[0].SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
         }
         else if (moving && running && canRun) // Running
         {
+            playerRotation(aiming, cameraVector, newPlayerMovementVector);
             StaminaBar.instance.UseStamina(0.05f);
             controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed * movementSpeedModifier);
             animators[0].SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
         }
         else if (moving && running && !canRun) // Attempting to run
         {
+            playerRotation(aiming, cameraVector, newPlayerMovementVector);
             controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed * movementSpeedModifier);
             animators[0].SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
         }
         else // Idle
         {
+            if (aiming)
+                playerRotation(aiming, cameraVector, newPlayerMovementVector);
             animators[0].SetFloat("Speed", 0f, 0.1f, Time.deltaTime);
         }
     }
