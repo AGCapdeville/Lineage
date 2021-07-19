@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
         var cameraForwardDirection = Camera.main.transform.forward;
         var cameraVector = Vector3.Scale(cameraForwardDirection, (Vector3.right + Vector3.forward));
 
-        bool canRun = StaminaBar.instance.IsStaminaEmpty();
+        bool canRun = !StaminaBar.instance.IsStaminaEmpty();
         bool aiming = Mathf.Approximately(aim.ReadValue<float>(), 1);
 
         // Player Input
@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
         else if (moving && running && !canRun) // Attempting to run
         {
             playerRotation(aiming, cameraVector, newPlayerMovementVector);
-            controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed * movementSpeedModifier);
+            controller.Move(newPlayerMovementVector * 0.5f * Time.deltaTime * 3.14f * movementSpeed);
             animators[0].SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
         }
         else // Idle
