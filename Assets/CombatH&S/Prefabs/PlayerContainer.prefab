@@ -42,7 +42,7 @@ Animator:
   m_GameObject: {fileID: 8297054336343277479}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08898091422f7634c9695ce662db2b7d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -290,11 +290,11 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Wasd
       m_Flags: 8
-  shft:
-    m_Name: Shft
+  shift:
+    m_Name: Shift
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 320808e6-0483-4719-bb86-fd905531f349
+    m_Id: eb783725-e968-4441-bb62-61634a532911
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
