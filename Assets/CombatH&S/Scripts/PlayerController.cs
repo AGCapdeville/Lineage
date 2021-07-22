@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.ShaderGraph;
+using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     private CubeInputActions cubeInputActions;
     public CharacterController controller;
@@ -38,7 +35,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         cubeInputActions = new CubeInputActions();
-        controller = GetComponent<CharacterController>();
+        // controller = GetComponent<CharacterController>();
+        controller = GetComponentInChildren<CharacterController>();
         animators = GetComponentsInChildren<Animator>();
     }
 
@@ -67,6 +65,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isLocalPlayer == false)
+            return;
+
         bool attacking = Mathf.Approximately(attack.ReadValue<float>(), 1);
 
         if (attacking)
@@ -75,6 +76,15 @@ public class PlayerController : MonoBehaviour
         }
 
         MovePlayerTo();
+        ToggleCur();
+    }
+
+    private void ToggleCur()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = Cursor.lockState == CursorLockMode.Locked ? CursorLockMode.Confined : CursorLockMode.Locked;
+        }
     }
 
     private void MovePlayerTo()
