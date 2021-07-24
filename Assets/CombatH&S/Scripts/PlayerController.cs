@@ -1,35 +1,44 @@
 using Mirror;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : NetworkBehaviour
 {
-    private CubeInputActions cubeInputActions;
-    public CharacterController controller;
-    private InputAction movement;
-    private InputAction run;
-    private InputAction attack;
-    private InputAction aim;
-    // private Animator animator;
+    [SerializeField] private CubeInputActions cubeInputActions;
+    [SerializeField] public CharacterController controller;
+    [SerializeField] private InputAction movement;
+    [SerializeField] private InputAction run;
+    [SerializeField] private InputAction attack;
+    [SerializeField] private InputAction aim;
+    [SerializeField] private CinemachineFreeLook cmf;
 
-    private float movementSpeed = 4f;
-    private float movementSpeedModifier = 2f;
-    private float rotationSpeed = 215f;
+    // private Animator animator;
+    [SerializeField] private float movementSpeed = 4f;
+    [SerializeField] private float movementSpeedModifier = 2f;
+    [SerializeField] private float rotationSpeed = 215f;
 
     // jump vars
-    public float jumpForce = 5.0f;
-    public float jumpImpulse = .5f;
-    public float gravity = -9.8f;
-    private float speedVert;
-    private bool isGrounded;
+    [SerializeField] public float jumpForce = 5.0f;
+    [SerializeField] public float jumpImpulse = .5f;
+    [SerializeField] public float gravity = -9.8f;
+    [SerializeField] private float speedVert;
+    [SerializeField] private bool isGrounded;
 
-    private Animator[] animators;
+    [SerializeField] private Animator[] animators;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         speedVert = 0.0f; //player starts at rest
         isGrounded = true;
+
+        if (isLocalPlayer)
+        {
+            cmf = CinemachineFreeLook.FindObjectOfType<CinemachineFreeLook>();
+            cmf.LookAt = this.gameObject.transform;
+            cmf.Follow = this.gameObject.transform;
+        }
     }
 
     private void Awake()

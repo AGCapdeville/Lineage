@@ -355,7 +355,6 @@ GameObject:
   m_Component:
   - component: {fileID: 304283560}
   - component: {fileID: 304283559}
-  - component: {fileID: 304283561}
   m_Layer: 0
   m_Name: CMBrain
   m_TagString: Untagged
@@ -481,20 +480,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 20.359, z: 0}
---- !u!114 &304283561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304283558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96005f1e866b29e48972069dba2d2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  PlayerTransform: {fileID: 0}
 --- !u!4 &311444674 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3067024306126525580, guid: 01800528d2a3ea549887c9c34c0a772c, type: 3}
