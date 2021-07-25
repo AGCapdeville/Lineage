@@ -423,8 +423,8 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: 75
-    m_SpeedMode: 0
-    m_MaxSpeed: 750
+    m_SpeedMode: 1
+    m_MaxSpeed: 1
     m_AccelTime: 0
     m_DecelTime: 0
     m_InputAxisName: Mouse X

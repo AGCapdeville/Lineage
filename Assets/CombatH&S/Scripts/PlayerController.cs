@@ -71,18 +71,21 @@ public class PlayerController : NetworkBehaviour
         attack.Disable();
         aim.Disable();
     }
-
+    
     private void Update()
     {
         if (isLocalPlayer == false)
             return;
 
         bool attacking = Mathf.Approximately(attack.ReadValue<float>(), 1);
-
-        if (attacking)
+        
+        animators[1].SetBool("Attacking", attacking);
+        
+        /*if (attacking)
         {
             animators[1].Play("swingHammerAnimation");
         }
+        */
 
         MovePlayerTo();
         ToggleCur();
