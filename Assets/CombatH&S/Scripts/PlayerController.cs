@@ -2,6 +2,7 @@ using Mirror;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -71,22 +72,23 @@ public class PlayerController : NetworkBehaviour
         attack.Disable();
         aim.Disable();
     }
-    
+
+    [SerializeField] public GameObject enemy;
     private void Update()
     {
         if (isLocalPlayer == false)
             return;
+        
+        if (Input.GetKeyDown(KeyCode.Mouse2))
+        {
+            GameObject enemySpawn = Instantiate(enemy, transform.position + transform.forward*2, transform.rotation);
+            NetworkServer.Spawn(enemySpawn);
+        }
 
         bool attacking = Mathf.Approximately(attack.ReadValue<float>(), 1);
         
         animators[1].SetBool("Attacking", attacking);
         
-        /*if (attacking)
-        {
-            animators[1].Play("swingHammerAnimation");
-        }
-        */
-
         MovePlayerTo();
         ToggleCur();
     }
