@@ -7,7 +7,15 @@ public class Hammer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("enemyCube"))
         {
-            other.gameObject.SetActive(false);
+            Debug.Log("hammer on Collison with: " + other.gameObject.tag);
+            //other.gameObject.SetActive(false);
+            other.GetComponent<Enemy_Movement>().health -= 1;
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            rb.velocity = other.transform.forward * -100.0f;
+            if (other.GetComponent<Enemy_Movement>().health <= 0)
+            {
+                other.gameObject.SetActive(false);
+            }
         }
 
     }

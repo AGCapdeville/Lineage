@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5978069876007227946}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: hammer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
