@@ -11,7 +11,7 @@ public class Hammer : MonoBehaviour
             //other.gameObject.SetActive(false);
             other.GetComponent<Enemy_Movement>().health -= 1;
             Rigidbody rb = other.GetComponent<Rigidbody>();
-            rb.velocity = other.transform.forward * -100.0f;
+            rb.velocity = other.transform.forward * -50.0f;
             if (other.GetComponent<Enemy_Movement>().health <= 0)
             {
                 other.gameObject.SetActive(false);
