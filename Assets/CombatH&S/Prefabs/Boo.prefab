@@ -202,6 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8360483536282675790}
   - component: {fileID: 4092338868474978328}
+  - component: {fileID: 578718183589989445}
   m_Layer: 0
   m_Name: Boo
   m_TagString: Untagged
@@ -238,6 +239,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   MoveSpeed: 4
+--- !u!114 &578718183589989445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6744937624260050797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 17252cc3ffe22a1429fda3b0695e57a9
+  hasSpawned: 0
 --- !u!1 &9092765427552201290
 GameObject:
   m_ObjectHideFlags: 0
