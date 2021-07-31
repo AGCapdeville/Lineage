@@ -27,6 +27,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private bool isGrounded;
 
     [SerializeField] private Animator[] animators;
+    [SerializeField] public GameObject enemy;
 
     private void Start()
     {
@@ -72,8 +73,6 @@ public class PlayerController : NetworkBehaviour
         attack.Disable();
         aim.Disable();
     }
-
-    [SerializeField] public GameObject enemy;
     private void Update()
     {
         if (isLocalPlayer == false)

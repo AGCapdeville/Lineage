@@ -3,7 +3,7 @@ public class BooAI : MonoBehaviour
 {
     public int health = 2;
     public float MoveSpeed = 4f;
-    private bool playerNotLooing = false;
+    private bool playerNotLooking = false;
 
     void Start()
     {
@@ -23,14 +23,14 @@ public class BooAI : MonoBehaviour
 
         if (facingVector.magnitude > 1.4f)
         {
-            playerNotLooing = true;
+            playerNotLooking = true;
         }
         else
         {
-            playerNotLooing = false;
+            playerNotLooking = false;
         }
 
-        if (playerNotLooing)
+        if (playerNotLooking)
         {
             transform.position += transform.forward * (MoveSpeed * Time.deltaTime);
         }
