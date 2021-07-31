@@ -26,11 +26,12 @@ public class CuboidAI : MonoBehaviour
         if (dist >= 5f)
         {
             transform.position += transform.forward * (MoveSpeed * Time.deltaTime);
+            animators[1].SetBool("Attacking", false);
         }
         else
         {
             //attack swing
-            animators[1].SetBool("Attacking", attacking);
+            animators[1].SetBool("Attacking", true);
         }
 
         Debug.Log("Distance between player and Cuboid = " + dist);
