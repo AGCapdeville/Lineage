@@ -9,10 +9,10 @@ public class Hammer : MonoBehaviour
         {
             Debug.Log("hammer on Collison with: " + other.gameObject.tag);
             //other.gameObject.SetActive(false);
-            other.GetComponent<Enemy_Mover>().health -= 1;
+            other.GetComponent<Enemy_Movement>().health -= 1;
             Rigidbody rb = other.GetComponent<Rigidbody>();
             rb.velocity = other.transform.forward * -50.0f;
-            if (other.GetComponent<Enemy_Mover>().health <= 0)
+            if (other.GetComponent<Enemy_Movement>().health <= 0)
             {
                 other.gameObject.SetActive(false);
             }
