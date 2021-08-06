@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5978069876007227946}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: hammer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,6 +338,7 @@ MonoBehaviour:
   speedVert: 0
   isGrounded: 0
   animators: []
+  enemy: {fileID: 3009902890259500639, guid: 039618f4f9ab6df46badf244748b41d7, type: 3}
 --- !u!114 &8317229061766894716
 MonoBehaviour:
   m_ObjectHideFlags: 0
