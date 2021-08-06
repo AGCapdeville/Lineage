@@ -6,4 +6,12 @@ public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance { get; private set; }
     
+    public int time;
+
+    public void Awake()
+    {
+        if (Instance == null){
+            Instance = this;
+        }
+    }
 }
