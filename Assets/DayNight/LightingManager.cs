@@ -18,11 +18,12 @@ public class LightingManager : MonoBehaviour
         }
 
         if (Application.isPlaying){
-            TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24f; // Clamp between 0-24 
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay += Time.deltaTime / 60f;
+            float dayNormalized = TimeOfDay % 24;
+            // TimeOfDay %= 24f; // Clamp between 0-24 
+            UpdateLighting(dayNormalized * 24);
         } else {
-            UpdateLighting(TimeOfDay / 24f);
+            UpdateLighting(TimeOfDay / 24);
         }
     }
     private void UpdateLighting(float timePercent){
