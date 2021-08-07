@@ -12,6 +12,8 @@ TagManager:
   - hammerHitbox
   - enemyCube
   - ground
+  - hammer
+  - DayNightManager
   layers:
   - Default
   - TransparentFX
