@@ -1,8 +1,12 @@
+using System;
 using Mirror;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -28,6 +32,17 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] private Animator[] animators;
     [SerializeField] public GameObject enemy;
+    
+    // weapon vars
+    [SerializeField] public Transform AxeObj;
+    [SerializeField] public Transform BowObj;
+
+    private bool[] WeaponsBools =
+    {
+        true, // axe
+        false // bow
+    };
+
 
     private void Start()
     {
@@ -41,6 +56,12 @@ public class PlayerController : NetworkBehaviour
             cmf.LookAt = this.gameObject.transform;
             cmf.Follow = this.gameObject.transform;
         }
+
+        AxeObj = gameObject.transform.GetChild(1).transform.GetChild(0);
+        BowObj = gameObject.transform.GetChild(1).transform.GetChild(1);
+        
+        AxeObj.gameObject.SetActive(false);
+        BowObj.gameObject.SetActive(false);
     }
 
     private void Awake()
@@ -77,6 +98,17 @@ public class PlayerController : NetworkBehaviour
     {
         if (isLocalPlayer == false)
             return;
+        
+        if (Input.inputString != "")
+        {
+            Debug.Log(Input.inputString);
+            int number;
+            bool isNumber = Int32.TryParse(Input.inputString, out number);
+            if (isNumber)
+            {
+                weaponSelect(number);   
+            }
+        }
         
         if (Input.GetKeyDown(KeyCode.Mouse2))
         {
@@ -177,5 +209,19 @@ public class PlayerController : NetworkBehaviour
     {
         Quaternion toRotation = aiming ? Quaternion.LookRotation(cameraVector, Vector3.up) : Quaternion.LookRotation(movementVector, Vector3.up); 
         controller.transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    private void weaponSelect(int number)
+    {
+        for (int i = 1; i < WeaponsBools.Length+1; i++)
+        {
+            WeaponsBools[i-1] = false;
+            if (i == number)
+            {
+                WeaponsBools[i-1] = true;
+            }
+        }
+        AxeObj.gameObject.SetActive(WeaponsBools[0]);
+        BowObj.gameObject.SetActive(WeaponsBools[1]);
     }
 }
