@@ -12,6 +12,7 @@ TagManager:
   - hammerHitbox
   - enemyCube
   - ground
+  - hammer
   layers:
   - Default
   - TransparentFX
