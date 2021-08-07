@@ -13,6 +13,7 @@ TagManager:
   - enemyCube
   - ground
   - hammer
+  - DayNightManager
   layers:
   - Default
   - TransparentFX
