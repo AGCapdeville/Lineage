@@ -36,7 +36,6 @@ public class PlayerController : NetworkBehaviour
     // weapon vars
     [SerializeField] public Transform AxeObj;
     [SerializeField] public Transform BowObj;
-
     private bool[] WeaponsBools =
     {
         true, // axe
@@ -117,8 +116,12 @@ public class PlayerController : NetworkBehaviour
         }
 
         bool attacking = Mathf.Approximately(attack.ReadValue<float>(), 1);
-        
+        bool aiming = Mathf.Approximately(aim.ReadValue<float>(), 1);
+
         animators[1].SetBool("Attacking", attacking);
+        animators[1].SetBool("Aiming", aiming);
+        animators[2].SetBool("Attacking", attacking);
+        animators[2].SetBool("Aiming", aiming);
         
         MovePlayerTo();
         ToggleCur();
