@@ -6,6 +6,18 @@ using UnityEngine;
 
 public class ArrowScrip : NetworkBehaviour
 {
+    [SerializeField] public float expirationTime = 10f;
+    private float elapsedTime = 0f;
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime > expirationTime)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("enemyCube"))
