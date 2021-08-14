@@ -56,8 +56,8 @@ public class PlayerController : NetworkBehaviour
             cmf.Follow = this.gameObject.transform;
         }
 
-        AxeObj = gameObject.transform.GetChild(1).transform.GetChild(0);
-        BowObj = gameObject.transform.GetChild(1).transform.GetChild(1);
+        AxeObj = gameObject.transform.GetChild(0).transform.GetChild(0);
+        BowObj = gameObject.transform.GetChild(0).transform.GetChild(1);
         
         AxeObj.gameObject.SetActive(false);
         BowObj.gameObject.SetActive(false);

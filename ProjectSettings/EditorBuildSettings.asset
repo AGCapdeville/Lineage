@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CombatH&S.unity
     guid: 60252483b06a3b34a8a0bb2f7dae06c0
+  - enabled: 1
+    path: Assets/Scenes/Waves.unity
+    guid: d00775a9cc354e348b0a26dc0894bd32
   m_configObjects: {}
