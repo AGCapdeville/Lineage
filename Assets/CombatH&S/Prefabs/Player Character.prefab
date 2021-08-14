@@ -440,7 +440,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
   cmf: {fileID: 900003476747670125, guid: 22d53d308fa17044580c22f9f2abeed0, type: 3}
-  camera: {fileID: 2667504755391201240, guid: c1d6018d5de499d4ab0f8451f627efeb, type: 3}
+  playerCamera: {fileID: 2667504755391201240, guid: c1d6018d5de499d4ab0f8451f627efeb, type: 3}
   movementSpeed: 4
   movementSpeedModifier: 2
   rotationSpeed: 215
