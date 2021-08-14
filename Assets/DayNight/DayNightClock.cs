@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteAlways]
-public class DayNightClock : MonoBehaviour
+public class DayNightClock : NetworkBehaviour
 {
     // References
     [SerializeField] private Light DirectionalLight;
@@ -13,7 +14,7 @@ public class DayNightClock : MonoBehaviour
     // Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay; 
 
-    public string WorldTime;
+    [SerializeField] public string WorldTime;
     private string hourString;
     private string minuteString;
     

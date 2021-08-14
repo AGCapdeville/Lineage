@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class BowScrip : NetworkBehaviour
+public class BowScript : NetworkBehaviour
 {
     [SerializeField] public GameObject Arrow;
     [SerializeField] public float speed = 1000f;

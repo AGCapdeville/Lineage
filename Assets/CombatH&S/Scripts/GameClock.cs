@@ -1,17 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class GameClock : MonoBehaviour
 {
-    public Text gameTime;
     public DayNightClock dayNightClock;
     public GameObject DayNightManager;
+    public TMP_Text clock;
     
-    private void OnAwake()
+    private void Start()
     {
-        gameTime = gameObject.GetComponent<Text>();
         DayNightManager = GameObject.FindGameObjectWithTag("DayNightManager");
-        gameTime.text = DayNightManager.GetComponent<DayNightClock>().WorldTime;
+        clock = GetComponent<TMP_Text>();
+    }
+
+    private void Update()
+    {
+        if (clock.text != DayNightManager.GetComponent<DayNightClock>().WorldTime){
+            clock.SetText(DayNightManager.GetComponent<DayNightClock>().WorldTime);
+        }
     }
 
 }

@@ -100,7 +100,7 @@ public class PlayerController : NetworkBehaviour
         
         if (Input.inputString != "")
         {
-            Debug.Log(Input.inputString);
+            // Debug.Log(Input.inputString);
             int number;
             bool isNumber = Int32.TryParse(Input.inputString, out number);
             if (isNumber)

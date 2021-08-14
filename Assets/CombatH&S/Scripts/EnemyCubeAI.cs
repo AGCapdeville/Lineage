@@ -33,11 +33,11 @@ public class EnemyCubeAI : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Enemy on Collison with: " + collision.gameObject.tag);
+        // Debug.Log("Enemy on Collison with: " + collision.gameObject.tag);
         if (collision.gameObject.tag == "ground")
         {
             isGrounded = true;
-            Debug.Log("grounded");
+            // Debug.Log("grounded");
         }
     }
 
@@ -57,14 +57,14 @@ public class EnemyCubeAI : NetworkBehaviour
             
             if (isGrounded && Random.value >= 0.999) //jump
             {
-                Debug.Log("jumping");
+                // Debug.Log("jumping");
                 rb.velocity = Vector3.up * jumpForce;
                 transform.position += Vector3.up * jumpImpulse;
                 isGrounded = false;
             }
             else
             {
-                Debug.Log(("falling"));
+                // Debug.Log(("falling"));
                 transform.position += transform.forward * (MoveSpeed * Time.deltaTime);
             }
 

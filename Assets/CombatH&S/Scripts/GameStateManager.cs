@@ -1,17 +1,29 @@
-using System.Collections;
+using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : NetworkBehaviour
 {
-    public static GameStateManager Instance { get; private set; }
-    
-    public int time;
+    [SerializeField] int waveNumber;
+    [SerializeField] List<GameObject> players;
 
-    public void Awake()
+    public void Start()
     {
-        if (Instance == null){
-            Instance = this;
-        }
+        players = new List<GameObject>();
+        waveNumber = 0;
     }
+
+    public void playerJoined(GameObject player)
+    {
+        players.Add(player);
+    }
+    
+
+    public void waveComplete()
+    {
+        waveNumber++;
+        // start timer for next wave... 10 sec
+        // update wave number for all player HUDs
+    }
+
 }
