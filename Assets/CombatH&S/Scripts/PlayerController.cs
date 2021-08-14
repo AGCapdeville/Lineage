@@ -17,7 +17,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private InputAction attack;
     [SerializeField] private InputAction aim;
     [SerializeField] public CinemachineFreeLook cmf;
-    [SerializeField] public Camera camera;
+    [SerializeField] public Camera playerCamera;
 
     // private Animator animator;
     [SerializeField] private float movementSpeed = 4f;
@@ -52,7 +52,7 @@ public class PlayerController : NetworkBehaviour
 
         if (isLocalPlayer)
         {
-            camera = Instantiate(camera, new Vector3(0,0,0), Quaternion.identity);
+            playerCamera = Instantiate(playerCamera, new Vector3(0,0,0), Quaternion.identity);
             cmf = Instantiate(cmf, new Vector3(0,0,0), Quaternion.identity);
             cmf.LookAt = this.gameObject.transform;
             cmf.Follow = this.gameObject.transform;
