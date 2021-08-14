@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 5980374881654764897}
   - component: {fileID: 995911258611415902}
   - component: {fileID: 8162314289664291064}
+  - component: {fileID: 8844091524389360813}
   m_Layer: 0
   m_Name: enemyCube
-  m_TagString: enemyCube
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   gravity: -9.8
   speedVert: 0
   isGrounded: 0
+  isHit: 0
 --- !u!54 &8162314289664291064
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -154,6 +156,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8844091524389360813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009902890259500639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9a5e53261a18648b23de6b49d9da82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  health: 2
+  isHit: 0
 --- !u!1 &5614234508990425534
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Enemy_Movement : NetworkBehaviour
+public class EnemyCubeAI : NetworkBehaviour
 {
     int MoveSpeed = 4;
     int MaxDist = 25;
@@ -21,9 +21,11 @@ public class Enemy_Movement : NetworkBehaviour
     [SerializeField] public float gravity = -9.8f;
     [SerializeField] private float speedVert;
     [SerializeField] private bool isGrounded;
+    public bool isHit = false;
 
     void Start()
     {
+        gameObject.GetComponent<EnemyProperties>().health = health;
         speedVert = 0.0f; //enemy starts at rest
         isGrounded = true;
         rb = GetComponent<Rigidbody>();
@@ -41,7 +43,11 @@ public class Enemy_Movement : NetworkBehaviour
 
     void Update()
     {
-
+        if (isHit)
+        {
+            // Does something?
+            isHit = false;
+        }
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Player");
 

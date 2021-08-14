@@ -1,21 +1,18 @@
 using Mirror;
 using UnityEngine;
 
-public class Hammer : MonoBehaviour
+public class Hammer : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("enemyCube"))
+        if (other.gameObject.CompareTag("enemy"))
         {
             Debug.Log("hammer on Collison with: " + other.gameObject.tag);
             //other.gameObject.SetActive(false);
-            other.GetComponent<Enemy_Movement>().health -= 1;
+            other.GetComponent<EnemyProperties>().isHit = true;
             Rigidbody rb = other.GetComponent<Rigidbody>();
             rb.velocity = other.transform.forward * -10.0f;
-            if (other.GetComponent<Enemy_Movement>().health <= 0)
-            {
-                other.gameObject.SetActive(false);
-            }
+            other.gameObject.GetComponent<EnemyProperties>().health -= 1;
         }
 
     }

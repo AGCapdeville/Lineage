@@ -10,10 +10,10 @@ TagManager:
   - OptionsMenu
   - TitleUI
   - hammerHitbox
-  - enemyCube
   - ground
   - hammer
   - DayNightManager
+  - enemy
   layers:
   - Default
   - TransparentFX
