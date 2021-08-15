@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  expirationTime: 10
 --- !u!54 &6632979983976948500
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,6 +177,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: uploads_files_2003998_Arrow1
       objectReference: {fileID: 0}
+    - target: {fileID: 3904091915626911395, guid: c04af7c04284e7a4db8f81f449cb4fc7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 801db2d997a562b4ea333aa4593ce0f0, type: 2}
+    - target: {fileID: 8917683764665983121, guid: c04af7c04284e7a4db8f81f449cb4fc7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8844100413893686027, guid: 3e12a5bd5c93c7c46a1604d961e50fce, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c04af7c04284e7a4db8f81f449cb4fc7, type: 3}
 --- !u!4 &4569250868506245845 stripped
